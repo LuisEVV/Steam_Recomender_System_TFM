@@ -32,21 +32,7 @@ Entre 2020 y 2025, el número de juegos publicados al año en Steam pasó de **9
 
 ## 🏗️ Arquitectura
 
-```text
-┌─────────────────┐   ┌──────────────────┐   ┌─────────────────────────┐   ┌──────────────────┐
-│  INGESTA        │   │ ALMACENAMIENTO   │   │ PROCESAMIENTO           │   │ MODELADO         │
-│ Steam Web API   │──▶│ interacciones.csv│──▶│ limpieza · imputación   │──▶│ SVD truncado     │
-│ Steam Store API │   │ metadata.csv     │   │ filtro sparsity         │   │ TF-IDF + coseno  │
-│ (usuario semilla│   │                  │   │ log(1+t) + Min-Max[1,5] │   │ Híbrido v1 / v2  │
-│  → amigos)      │   │                  │   │ matriz CSR              │   │                  │
-└─────────────────┘   └──────────────────┘   └─────────────────────────┘   └────────┬─────────┘
-                                                                                      │ joblib
-                                                                                      ▼
-                     ┌──────────────────┐   HTTP/JSON   ┌──────────────────┐   ┌──────────────────┐
-                     │ Usuario final    │◀──────────────│ Streamlit :8501  │◀──│ FastAPI :8000    │
-                     │                  │               │ src/app.py       │   │ recommender.pkl  │
-                     └──────────────────┘               └──────────────────┘   └──────────────────┘
-```
+![Arquitectura del sistema SteamRec](assets/architecture.svg)
 
 La metodología sigue un ciclo de vida del dato inspirado en **CRISP-DM**: comprensión del problema, obtención de datos, preparación, ingeniería de características, modelado, despliegue, evaluación y reproducibilidad.
 
