@@ -32,7 +32,7 @@ Entre 2020 y 2025, el número de juegos publicados al año en Steam pasó de **9
 
 ## 🏗️ Arquitectura
 
-![Arquitectura del sistema SteamRec](assets/architecture.svg)
+![Arquitectura del sistema SteamRec](architecture.svg)
 
 La metodología sigue un ciclo de vida del dato inspirado en **CRISP-DM**: comprensión del problema, obtención de datos, preparación, ingeniería de características, modelado, despliegue, evaluación y reproducibilidad.
 
